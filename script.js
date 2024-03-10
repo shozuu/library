@@ -1,41 +1,71 @@
+const title = document.querySelector('.book-title');
+const author = document.querySelector('.author');
+const pages = document.querySelector('.pages');
+const read = document.querySelector('.read');
 
-const myLibrary = []; //books are to be put in the library using a function
+
+const myLibrary = [];
 
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
-    this.pages = pages; //read or not read
-    this.read = read;
+    this.pages = pages;
+    this.read = read; //yes or no
 }
 
 Book.prototype.info = function() {
-    console.log(this.title + ', ' + this.author + ', ' + this.pages + ', ' + this.read)
+    const gridContainer = document.querySelector('#grid-container');
+
+    const bookInfo = document.createElement('div');
+    bookInfo.classList.add('book-info')
+
+    bookInfo.innerHTML = `
+        <div class="title-group">
+            <p class="book-title"><strong>${this.title}</strong></p>
+            <p class="author"><em>${this.author}</em></p>
+        </div>
+        <div class="details">
+            <div class="info-group">
+                <p class="pages">Pages: ${this.pages}</p>
+                <p class="read">Status: ${this.read}</p>
+            </div>
+            <div class="button-group">
+                <button class="read-button">Read</button>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+    `;
+
+    gridContainer.appendChild(bookInfo);
 }
 
 function getUserInput(){
+    //get input from forms
     let title = prompt('title:')
     let author = prompt('author:')
     let pages = prompt('pages:')
     let read = prompt('read:')
 
+    //instantiate every time its called
     const temp = new Book(title, author, pages, read);
+
+    //add to myLibrary array
     myLibrary.push(temp);
+
+    //display info
+
+    temp.info();
+
+    // myLibrary.forEach(book => {
+    //     book.info();
+    // });
 }
 
+getUserInput();
+getUserInput();
+getUserInput();
 
-//need a function to get user input and push it to the myLibrary
+// myLibrary.forEach(book => {
+//     book.info();
+// });
 
-// const myBook = new Book('TITLE', 'AUTHOR', 'PAGES', 'READ');
-// myLibrary.push(myBook);
-
-// const urBook = new Book('TITLE1', 'AUTHOR1', 'PAGES1', 'READ1');
-// myLibrary.push(urBook);
-// const myLibrary = [myBook, urBook];
-
-// getUserInput();
-// getUserInput();
-// getUserInput();
-
-myLibrary.forEach(book => {
-    book.info();
-});
