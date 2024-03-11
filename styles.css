@@ -54,6 +54,7 @@ img {
 
 .books {
     margin-top: 4em;
+    display: none;
 }
 
 .books .container {
@@ -134,4 +135,114 @@ img {
 
 .remove-button:hover {
     background-color: #DE9C9C;
+}
+
+.modal.hidden {
+    /* display: none; */
+}
+
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 1.5em 3em;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    box-shadow: 0px 6px 11px 1px #D6D6D6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-title {
+    color: #A9792B;
+}
+
+.input-group.text,
+.input-group.number {
+    position: relative;
+}
+
+.input-group.text input,
+.input-group.number input {
+    font-family: 'Poppins', sans-serif;
+    width: 350px;
+    background-color: #E8E8E8;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #A9792B;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-group.text label,
+.input-group.number label {
+    color: #8b8b8b;
+}
+
+.input-group.text label,
+.input-group.number label {
+    position: absolute;
+    top: 50%;
+    left: 11px;
+    transform: translateY(-50%);
+}
+
+.input-group.checkbox {
+    margin: auto;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+input#input-read {
+    width: 20px;
+}
+
+.input-group input:focus::placeholder {
+    color: transparent;
+}
+
+.input-group input:focus~label,
+.input-group input:not(:placeholder-shown)~label {
+    color: black;
+    background-color: #E8E8E8;
+    font-size: 12px;
+    padding: 2px;
+    top: 0;
+}
+
+.input-group input:invalid:not(:placeholder-shown) {
+    border: 1px solid red;
+}
+
+.input-group input:valid:not(:placeholder-shown) {
+    border: 1px solid green;
+}
+
+.submit button {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #dfb873;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+}
+
+.submit button:hover{
+    background-color: #d7ac66;
 }
