@@ -23,5 +23,30 @@
     <div class="books">
         <div class="container" id="grid-container"></div>
     </div>
+
+    <div class="modal hidden">
+        <h1 class="modal-title">Book Information</h1>
+        <form action="#">
+            <div class="input-group">
+                <input type="text" id="title-input" name="input-title" placeholder="Title" pattern="^[a-z.A-Z ]+$" required>
+                <label for="title-input">Title</label>
+            </div>
+            <div class="input-group">
+                <input type="text" name="input-author" id="input-author" placeholder="Author" pattern="^[a-z.A-Z ]+$" required>
+                <label for="input-author">Author</label>
+            </div>
+            <div class="input-group">
+                <input type="number" name="input-page" id="input-page" placeholder="Pages" min="1" required>
+                <label for="input-page">Pages</label>
+            </div>
+            <div class="input-group ckeckbox">
+                <label for="input-read">Have you read it?</label>
+                <input type="checkbox" name="input-read" id="input-read" value="read">
+            </div>
+            <div class="submit">
+                <button type="submit">Add Book</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
