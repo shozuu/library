@@ -84,13 +84,23 @@ img {
 }
 
 .book-title {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 700;
     line-height: 1.3;
 }
 
 .author {
-    font-size: .9em
+    font-size: .9em;
+    color: #2aa5f1;
+}
+
+.pages,
+.read {
+    font-size: .9em;
+}
+
+.tag {
+    font-weight: 600;
 }
 
 .button-group {
