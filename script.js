@@ -26,8 +26,8 @@ Book.prototype.info = function() {
         </div>
         <div class="details">
             <div class="info-group">
-                <p class="pages">Pages: ${this.pages}</p>
-                <p class="read">Status: ${this.read}</p>
+                <p class="pages"><span class="tag">Pages:   </span>${this.pages}</p>
+                <p class="read"><span class="tag">Status:   </span>${this.read}</p>
             </div>
             <div class="button-group">
                 <button class="read-button">Read</button>
@@ -55,17 +55,8 @@ function getUserInput(){
     //display info
 
     temp.info();
-
-    // myLibrary.forEach(book => {
-    //     book.info();
-    // });
 }
 
 getUserInput();
 getUserInput();
 getUserInput();
-
-// myLibrary.forEach(book => {
-//     book.info();
-// });
-
