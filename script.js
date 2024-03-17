@@ -1,6 +1,7 @@
 const addBook = document.querySelector('.add');
 const modal = document.querySelector('.modal');
 const modalBackdrop = document.querySelector('.modal-backdrop');
+const form = document.getElementById('form');
 const myLibrary = [];
 
 
@@ -13,9 +14,6 @@ modalBackdrop.onclick = function() {
     modal.classList.add("hidden");
     modalBackdrop.classList.remove("on");
 }
-
-
-
 
 //object constructor
 function Book(title, author, pages, read){
@@ -48,32 +46,33 @@ Book.prototype.info = function() {
             </div>
         </div>
     `;
-
     gridContainer.appendChild(bookInfo);
 }
 
-function getUserInput(){
-    //get input from forms
-    let title = prompt('title:')
-    let author = prompt('author:')
-    let pages = prompt('pages:')
-    let read = prompt('read:')
+form.onsubmit = function(e) {
+    e.preventDefault();
 
-    //instantiate every time its called
+    let title = form.elements['title-input'].value;
+    let author = form.elements['input-author'].value;
+    let pages = form.elements['input-page'].value;
+    let read = form.elements['input-read'].checked ? "Yes" : "No";
+
+    console.log(read);
+
+    //create a new book object with the input values
     const temp = new Book(title, author, pages, read);
 
     //add to myLibrary array
     myLibrary.push(temp);
 
-    //display info
+    modal.classList.add("hidden");
+    modalBackdrop.classList.remove("on");
 
-    // temp.info();
+    viewLibrary();
 }
 
-// getUserInput();
-// getUserInput();
-// getUserInput();
-
-myLibrary.forEach(book => {
-    book.info();
-});
+function viewLibrary() {
+    myLibrary.forEach(book => {
+        book.info();
+    });
+}
