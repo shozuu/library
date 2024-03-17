@@ -1,11 +1,23 @@
-const title = document.querySelector('.book-title');
-const author = document.querySelector('.author');
-const pages = document.querySelector('.pages');
-const read = document.querySelector('.read');
-
-
+const addBook = document.querySelector('.add');
+const modal = document.querySelector('.modal');
+const modalBackdrop = document.querySelector('.modal-backdrop');
 const myLibrary = [];
 
+
+addBook.onclick = function() {
+    modal.classList.remove("hidden");
+    modalBackdrop.classList.add("on");
+}
+
+modalBackdrop.onclick = function() {
+    modal.classList.add("hidden");
+    modalBackdrop.classList.remove("on");
+}
+
+
+
+
+//object constructor
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
@@ -13,6 +25,7 @@ function Book(title, author, pages, read){
     this.read = read; //yes or no
 }
 
+//prototype function
 Book.prototype.info = function() {
     const gridContainer = document.querySelector('#grid-container');
 
@@ -54,9 +67,13 @@ function getUserInput(){
 
     //display info
 
-    temp.info();
+    // temp.info();
 }
 
-getUserInput();
-getUserInput();
-getUserInput();
+// getUserInput();
+// getUserInput();
+// getUserInput();
+
+myLibrary.forEach(book => {
+    book.info();
+});
