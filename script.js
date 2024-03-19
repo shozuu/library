@@ -38,7 +38,7 @@ Book.prototype.info = function() {
         <div class="details">
             <div class="info-group">
                 <p class="pages"><span class="tag">Pages:   </span>${this.pages}</p>
-                <p class="read"><span class="tag">Status:   </span>${this.read}</p>
+                <p class="read"><span class="tag">Read:   </span>${this.read}</p>
             </div>
             <div class="button-group">
                 <button class="read-button">Read</button>
@@ -57,8 +57,6 @@ form.onsubmit = function(e) {
     let pages = form.elements['input-page'].value;
     let read = form.elements['input-read'].checked ? "Yes" : "No";
 
-    console.log(read);
-
     //create a new book object with the input values
     const temp = new Book(title, author, pages, read);
 
@@ -67,11 +65,16 @@ form.onsubmit = function(e) {
 
     modal.classList.add("hidden");
     modalBackdrop.classList.remove("on");
+    form.reset();
 
     viewLibrary();
 }
 
 function viewLibrary() {
+    //it resets the current grid content and recreates the bookInfo again
+    const gridContainer = document.querySelector('#grid-container');
+    gridContainer.innerHTML = '';
+
     myLibrary.forEach(book => {
         book.info();
     });
