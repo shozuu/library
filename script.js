@@ -2,7 +2,6 @@ const addBook = document.querySelector('.add');
 const modal = document.querySelector('.modal');
 const modalBackdrop = document.querySelector('.modal-backdrop');
 const form = document.getElementById('form');
-const remove = document.querySelector('.remove-button')
 const myLibrary = [];
 
 
@@ -47,10 +46,6 @@ function viewLibrary() {
     });
 }
 
-// remove.onclick = function() {
-//     s
-// }
-
 //object constructor
 function Book(title, author, pages, read){
     this.title = title;
@@ -78,9 +73,18 @@ Book.prototype.info = function() {
             </div>
             <div class="button-group">
                 <button class="read-button">Read</button>
-                <button class="remove-button" data-index = ${myLibrary.indexOf(this)}>Remove</button>
+                <button class="remove-button" data-index = "${myLibrary.indexOf(this)}">Remove</button>
             </div>
         </div>
     `;
     gridContainer.appendChild(bookInfo);
+    
+    const removeButton = document.querySelectorAll('.remove-button');
+    
+    //removeButton returns a NodeList so we need to reiterate each remove-button class
+    removeButton.forEach(button => {
+        button.onclick = function() {
+            console.log(button.getAttribute('data-index'))
+        }
+    });
 }
