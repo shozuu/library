@@ -80,11 +80,14 @@ Book.prototype.info = function() {
     gridContainer.appendChild(bookInfo);
     
     const removeButton = document.querySelectorAll('.remove-button');
-    
+
     //removeButton returns a NodeList so we need to reiterate each remove-button class
     removeButton.forEach(button => {
         button.onclick = function() {
-            console.log(button.getAttribute('data-index'))
+            let removeAt = parseInt(button.getAttribute('data-index'));
+            
+            myLibrary.splice(removeAt, 1)
+            viewLibrary();
         }
     });
 }
