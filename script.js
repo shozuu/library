@@ -72,7 +72,7 @@ Book.prototype.info = function() {
                 <p class="read"><span class="tag">Read:   </span>${this.read}</p>
             </div>
             <div class="button-group">
-                <button class="read-button">Read</button>
+                <button class="read-button" data-index = "${myLibrary.indexOf(this)}">Read</button>
                 <button class="remove-button" data-index = "${myLibrary.indexOf(this)}">Remove</button>
             </div>
         </div>
@@ -80,13 +80,31 @@ Book.prototype.info = function() {
     gridContainer.appendChild(bookInfo);
     
     const removeButton = document.querySelectorAll('.remove-button');
+    const readButton = document.querySelectorAll('.read-button');
 
     //removeButton returns a NodeList so we need to reiterate each remove-button class
     removeButton.forEach(button => {
         button.onclick = function() {
             let removeAt = parseInt(button.getAttribute('data-index'));
-            
+
             myLibrary.splice(removeAt, 1)
+            viewLibrary();
+        }
+    });
+
+    readButton.forEach(button => {
+        button.onclick = function() {
+            let readAt = parseInt(button.getAttribute('data-index'));
+            console.log(readAt)
+
+            if(myLibrary[readAt].read == 'No') {
+                myLibrary[readAt].read = 'Yes'
+                console.log(myLibrary[readAt].read)
+            } 
+            else {
+                myLibrary[readAt].read = 'No'
+                console.log(myLibrary[readAt].read )
+            }
             viewLibrary();
         }
     });
