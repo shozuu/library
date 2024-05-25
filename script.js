@@ -46,67 +46,69 @@ function viewLibrary() {
     });
 }
 
-//object constructor
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read; //yes or no
-}
 
-//prototype function
-Book.prototype.info = function() {
-    const gridContainer = document.querySelector('#grid-container');
+class Book {
+    //object constructor
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read; //yes or no
+    }
 
-    const bookInfo = document.createElement('div');
-    bookInfo.classList.add('book-info')
+    //prototype function
+    info() {
+        const gridContainer = document.querySelector('#grid-container');
 
-    bookInfo.innerHTML = `
-        <div class="title-group">
-            <p class="book-title"><strong>${this.title}</strong></p>
-            <p class="author"><em>${this.author}</em></p>
-        </div>
-        <div class="details">
-            <div class="info-group">
-                <p class="pages"><span class="tag">Pages:   </span>${this.pages}</p>
-                <p class="read"><span class="tag">Read:   </span>${this.read}</p>
+        const bookInfo = document.createElement('div');
+        bookInfo.classList.add('book-info')
+
+        bookInfo.innerHTML = `
+            <div class="title-group">
+                <p class="book-title"><strong>${this.title}</strong></p>
+                <p class="author"><em>${this.author}</em></p>
             </div>
-            <div class="button-group">
-                <button class="read-button" data-index = "${myLibrary.indexOf(this)}">Read</button>
-                <button class="remove-button" data-index = "${myLibrary.indexOf(this)}">Remove</button>
+            <div class="details">
+                <div class="info-group">
+                    <p class="pages"><span class="tag">Pages:   </span>${this.pages}</p>
+                    <p class="read"><span class="tag">Read:   </span>${this.read}</p>
+                </div>
+                <div class="button-group">
+                    <button class="read-button" data-index = "${myLibrary.indexOf(this)}">Read</button>
+                    <button class="remove-button" data-index = "${myLibrary.indexOf(this)}">Remove</button>
+                </div>
             </div>
-        </div>
-    `;
-    gridContainer.appendChild(bookInfo);
-    
-    const removeButton = document.querySelectorAll('.remove-button');
-    const readButton = document.querySelectorAll('.read-button');
+        `;
+        gridContainer.appendChild(bookInfo);
+        
+        const removeButton = document.querySelectorAll('.remove-button');
+        const readButton = document.querySelectorAll('.read-button');
 
-    //removeButton returns a NodeList so we need to reiterate each remove-button class
-    removeButton.forEach(button => {
-        button.onclick = function() {
-            let removeAt = parseInt(button.getAttribute('data-index'));
+        //removeButton returns a NodeList so we need to reiterate each remove-button class
+        removeButton.forEach(button => {
+            button.onclick = function() {
+                let removeAt = parseInt(button.getAttribute('data-index'));
 
-            myLibrary.splice(removeAt, 1)
-            viewLibrary();
-        }
-    });
-
-    readButton.forEach(button => {
-        button.onclick = function() {
-            let readAt = parseInt(button.getAttribute('data-index'));
-            console.log(readAt)
-
-            if(myLibrary[readAt].read == 'No') {
-                myLibrary[readAt].read = 'Yes'
-                console.log(myLibrary[readAt].read)
-            } 
-            else {
-                myLibrary[readAt].read = 'No'
-                console.log(myLibrary[readAt].read )
+                myLibrary.splice(removeAt, 1)
+                viewLibrary();
             }
-            viewLibrary();
-        }
-    });
-    // test
+        });
+
+        readButton.forEach(button => {
+            button.onclick = function() {
+                let readAt = parseInt(button.getAttribute('data-index'));
+                console.log(readAt)
+
+                if(myLibrary[readAt].read == 'No') {
+                    myLibrary[readAt].read = 'Yes'
+                    console.log(myLibrary[readAt].read)
+                } 
+                else {
+                    myLibrary[readAt].read = 'No'
+                    console.log(myLibrary[readAt].read )
+                }
+                viewLibrary();
+            }
+        });
+    }
 }
